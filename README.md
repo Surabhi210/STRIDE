@@ -1,5 +1,3 @@
-🚀 What is STRIDE?
-
 **STRIDE** is an all-in-one personal productivity web app designed to help you manage your tasks, focus better, capture ideas, plan your week, and reflect on your progress — all from a single, clean interface. No login required, no backend — it runs entirely in the browser.
 
 ✨ Features
