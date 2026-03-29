@@ -48,11 +48,3 @@
 
 - **HTML, CSS, JavaScript** 
 - **Local Storage** — all data persists in the browser with no server needed
-
-> *"Tag everything · Stay in stride"*
-
-STRIDE is built around the idea that productivity tools should be **simple, fast, and always available** — without accounts, internet dependency, or bloat. Everything lives in your browser.
-
----
-
-Feel free to tweak the Tech Stack section if you used any libraries (like a drag-and-drop library or a specific CSS framework), and add your name/credits at the bottom. Want me to format this as an actual `README.md` file you can download?
