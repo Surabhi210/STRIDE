@@ -1,373 +1,193 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Stride</title>
-
-<!-- FAVICON -->
-<link rel="icon" type="image/png" href="img.png"/>
-
-<!-- FONTS: Abril Fatface (headings) + Vollkorn (body) + Iosevka Charon Mono (mono/labels) -->
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Iosevka+Charon+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Stride</title>
+  <link rel="icon" type="image/png" href="img.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Iosevka+Charon+Mono:wght@300;400;500;700&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- ═══════════ SIDEBAR ═══════════ -->
 <nav class="sidebar">
-
-  <div class="s-logo-wrap" onclick="nav('tasks')">
-    <img src="img.png" class="s-logo-icon" alt="Stride"/>
-  </div>
-
+  <div class="s-logo-wrap" onclick="nav('tasks')"><img src="img.png" class="s-logo-icon" alt="Stride"/></div>
   <button class="nav-btn active" data-page="tasks" onclick="nav('tasks')">
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
-    </svg>
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
     <span class="tip">Tasks</span>
   </button>
-
   <button class="nav-btn" data-page="pomodoro" onclick="nav('pomodoro')">
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9.5 2.5h5"/><path d="M12 2.5v2.5"/>
-    </svg>
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9.5 2.5h5"/><path d="M12 2.5v2.5"/></svg>
     <span class="tip">Focus Timer</span>
   </button>
-
   <button class="nav-btn" data-page="notes" onclick="nav('notes')">
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-      <polyline points="14 2 14 8 20 8"/>
-      <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-    </svg>
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
     <span class="tip">Notes</span>
   </button>
-
   <button class="nav-btn" data-page="schedule" onclick="nav('schedule')">
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2"/>
-      <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
-      <line x1="3" y1="10" x2="21" y2="10"/>
-      <circle cx="8" cy="15" r="1" fill="currentColor"/>
-      <circle cx="12" cy="15" r="1" fill="currentColor"/>
-      <circle cx="16" cy="15" r="1" fill="currentColor"/>
-    </svg>
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="15" r="1" fill="currentColor"/><circle cx="12" cy="15" r="1" fill="currentColor"/><circle cx="16" cy="15" r="1" fill="currentColor"/></svg>
     <span class="tip">Schedule</span>
   </button>
-
   <button class="nav-btn" data-page="review" onclick="nav('review')">
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="18" y1="20" x2="18" y2="10"/>
-      <line x1="12" y1="20" x2="12" y2="4"/>
-      <line x1="6" y1="20" x2="6" y2="14"/>
-      <line x1="3" y1="20" x2="21" y2="20"/>
-    </svg>
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
     <span class="tip">Weekly Review</span>
   </button>
-
-  <div class="s-bottom">
-    <button class="icon-round" onclick="toggleTheme()" title="Toggle theme">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"/>
-        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-    </button>
-  </div>
+  <div class="s-bottom"><button class="icon-round" onclick="toggleTheme()" title="Toggle theme"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></button></div>
 </nav>
 
 <!-- ═══════════ MAIN ═══════════ -->
 <main class="main">
 
-<!-- ══ TASKS ══ -->
-<div class="page active" id="page-tasks">
-  <div class="ph">
-    <div class="ph-row">
+  <!-- ══ TASKS ══ -->
+  <div class="page active" id="page-tasks">
+    <div class="ph">
+      <div class="ph-row">
+        <div><h1>My <em>Tasks</em></h1><div class="sub">drag to reorder · tag everything · stay in stride</div></div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn btn-ghost btn-sm" onclick="openExport()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Export</button>
+          <button class="btn btn-ghost btn-sm" onclick="clearDone()">Clear done</button>
+        </div>
+      </div>
+    </div>
+    <div class="focus-banner" id="focusBanner">
+      <div class="focus-dot"></div><span>Focus Mode — showing Critical &amp; High priority only</span>
+      <button onclick="toggleFocus()" style="margin-left:auto;background:none;border:none;color:inherit;cursor:pointer;font-size:1.02rem;font-weight:800;opacity:.7">✕</button>
+    </div>
+    <div class="card add-card">
+      <div class="add-row">
+        <input type="text" id="taskIn" placeholder="What needs doing…" maxlength="220"/>
+        <button class="btn btn-primary" onclick="addTask()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add</button>
+      </div>
+      <div class="add-extras">
+        <select id="priSel"><option value="low">💤 Low</option><option value="medium" selected>📌 Medium</option><option value="high">⚡ High</option><option value="critical">🚨 Critical</option></select>
+        <input type="date" id="dateIn" style="width:auto"/>
+        <div class="tag-wrap"><input type="text" id="tagIn" placeholder="tag…" maxlength="20"/><button class="btn btn-ghost btn-sm" onclick="addTag()"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button></div>
+      </div>
+      <div class="tag-chips" id="pendingTags"></div>
+    </div>
+    <div class="task-toolbar">
+      <button class="f-pill on" data-f="all" onclick="setF('all',this)">All</button><button class="f-pill" data-f="active" onclick="setF('active',this)">Active</button><button class="f-pill" data-f="done" onclick="setF('done',this)">Done</button><button class="f-pill" data-f="critical" onclick="setF('critical',this)">🚨 Critical</button><button class="f-pill" data-f="high" onclick="setF('high',this)">⚡ High</button>
+      <button class="t-sort" id="sortBtn" onclick="toggleSort()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M7 12h10M11 18h2"/></svg> Auto-sort</button>
+      <button class="t-sort" id="focusBtn" onclick="toggleFocus()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg> Focus Mode</button>
+      <div class="t-search"><div class="t-search-inner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="searchIn" placeholder="Search tasks…" oninput="renderTasks()"/></div></div>
+    </div>
+    <div class="prog-wrap" id="progWrap" style="display:none">
+      <div class="prog-labels"><span id="progLabel">Progress</span><span id="progPct">0%</span></div>
+      <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+    <div class="task-list" id="taskList"></div>
+  </div>
+
+  <!-- ══ POMODORO ══ -->
+  <div class="page" id="page-pomodoro">
+    <div class="ph"><h1>Focus <em>Timer</em></h1><div class="sub">the pomodoro method · deep work · no distraction</div></div>
+    <div class="pomo-layout">
+      <div class="pomo-main">
+        <div class="pomo-tabs"><button class="p-tab on" onclick="setPMode('work',this)">Work</button><button class="p-tab" onclick="setPMode('short',this)">Short break</button><button class="p-tab" onclick="setPMode('long',this)">Long break</button></div>
+        <div class="ring-wrap">
+          <div class="ring-glow" id="ringGlow"></div>
+          <svg class="ring-svg" viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fill" id="ringFill" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="0" stroke="url(#rg)"/><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c5cfc"/><stop offset="1" stop-color="#ff6b6b"/></linearGradient></defs></svg>
+          <div class="ring-center"><div class="pomo-t" id="pomoTime">25:00</div><div class="pomo-lbl" id="pomoLbl">FOCUS</div></div>
+        </div>
+        <div class="p-dots" id="pomoDots"></div>
+        <div class="pomo-ctrl">
+          <button class="p-skip" onclick="pomoReset()" title="Reset"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 019-9 9.75 9.75 0 016.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg></button>
+          <button class="p-play" id="playBtn" onclick="pomoToggle()"><svg id="playIco" width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></button>
+          <button class="p-skip" onclick="pomoSkip()" title="Skip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,4 15,12 5,20" fill="currentColor"/><line x1="19" y1="4" x2="19" y2="20"/></svg></button>
+        </div>
+        <div style="font-size:1.08rem;font-family:var(--font-mono);color:var(--ink3);text-align:center;letter-spacing:.1em;text-transform:uppercase">Session <strong id="pSess" style="color:var(--prime)">1</strong> · Round <strong id="pRound" style="color:var(--prime)">1</strong></div>
+        <div class="card" style="padding:18px;width:100%;max-width:320px">
+          <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px">Today's Sessions</div>
+          <div id="pomoLog"><div style="color:var(--ink4);font-size:1.06rem;font-style:italic;font-family:var(--font-display)">No sessions yet.</div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card" style="padding:20px">
+          <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px">Timer Settings</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><label style="font-size:1.02rem;color:var(--ink2);font-family:var(--font-display)">Work (min)</label><input type="number" id="setWork" value="25" min="1" max="90" style="width:64px;text-align:center;padding:7px" onchange="updatePSettings()"/></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><label style="font-size:1.02rem;color:var(--ink2);font-family:var(--font-display)">Short break</label><input type="number" id="setShort" value="5" min="1" max="30" style="width:64px;text-align:center;padding:7px" onchange="updatePSettings()"/></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><label style="font-size:1.02rem;color:var(--ink2);font-family:var(--font-display)">Long break</label><input type="number" id="setLong" value="15" min="1" max="60" style="width:64px;text-align:center;padding:7px" onchange="updatePSettings()"/></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><label style="font-size:1.02rem;color:var(--ink2);font-family:var(--font-display)">Sessions/round</label><input type="number" id="setSess" value="4" min="2" max="8" style="width:64px;text-align:center;padding:7px" onchange="updatePSettings()"/></div>
+          </div>
+        </div>
+        <div class="card" style="padding:18px">
+          <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px">Today's Stats</div>
+          <div class="pomo-stat-grid">
+            <div class="p-stat"><div class="n" id="sFocused">0</div><div class="l">Sessions</div></div><div class="p-stat"><div class="n" id="sMins">0</div><div class="l">Minutes</div></div>
+            <div class="p-stat"><div class="n" id="sStreak">0</div><div class="l">Streak</div></div><div class="p-stat"><div class="n" id="sBreaks">0</div><div class="l">Breaks</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ NOTES ══ -->
+  <div class="page" id="page-notes">
+    <div class="ph"><div class="ph-row"><div><h1><em>Notes</em></h1><div class="sub">write anything · ideas persist · knowledge compounds</div></div><button class="btn btn-primary" onclick="newNote()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New note</button></div></div>
+    <div class="notes-layout">
+      <div class="n-sidebar">
+        <div class="n-sidebar-header">
+          <div class="n-sidebar-title-row"><span class="n-sidebar-title">All notes</span><span class="n-count-badge" id="nCount">0</span></div>
+          <div class="n-search-wrap"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input class="n-search-input" type="text" id="noteSearch" placeholder="Search notes…" oninput="renderNList()"/></div>
+        </div>
+        <div class="n-list-wrap" id="noteList"></div>
+      </div>
+      <div class="note-editor-card" id="nEditor"><div id="nEditorInner" style="display:flex;flex-direction:column;flex:1;min-height:600px"><div class="n-no-note"><div class="n-no-note-icon">write.</div><p>Select a note or create a new one to start writing</p></div></div></div>
+    </div>
+  </div>
+
+  <!-- ══ SCHEDULE ══ -->
+  <div class="page" id="page-schedule">
+    <div class="ph"><h1><em>Schedule</em></h1><div class="sub">your week at a glance · time is the real currency</div></div>
+    <div class="sched-layout">
+      <div><div class="day-tabs" id="dayTabs"></div><div class="card" style="padding:20px"><div id="timetable"></div></div></div>
       <div>
-        <h1>My <em>Tasks</em></h1>
-        <div class="sub">drag to reorder · tag everything · stay in stride</div>
-      </div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <button class="btn btn-ghost btn-sm" onclick="openExport()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Export
-        </button>
-        <button class="btn btn-ghost btn-sm" onclick="clearDone()">Clear done</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="focus-banner" id="focusBanner">
-    <div class="focus-dot"></div>
-    <span>Focus Mode — showing Critical &amp; High priority only</span>
-    <button onclick="toggleFocus()" style="margin-left:auto;background:none;border:none;color:inherit;cursor:pointer;font-size:1.02rem;font-weight:800;opacity:.7">✕</button>
-  </div>
-
-  <div class="card add-card">
-    <div class="add-row">
-      <input type="text" id="taskIn" placeholder="What needs doing…" maxlength="220"/>
-      <button class="btn btn-primary" onclick="addTask()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Add
-      </button>
-    </div>
-    <div class="add-extras">
-      <select id="priSel">
-        <option value="low">💤 Low</option>
-        <option value="medium" selected>📌 Medium</option>
-        <option value="high">⚡ High</option>
-        <option value="critical">🚨 Critical</option>
-      </select>
-      <input type="date" id="dateIn" style="width:auto"/>
-      <div class="tag-wrap">
-        <input type="text" id="tagIn" placeholder="tag…" maxlength="20"/>
-        <button class="btn btn-ghost btn-sm" onclick="addTag()">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="tag-chips" id="pendingTags"></div>
-  </div>
-
-  <div class="task-toolbar">
-    <button class="f-pill on" data-f="all" onclick="setF('all',this)">All</button>
-    <button class="f-pill" data-f="active" onclick="setF('active',this)">Active</button>
-    <button class="f-pill" data-f="done" onclick="setF('done',this)">Done</button>
-    <button class="f-pill" data-f="critical" onclick="setF('critical',this)">🚨 Critical</button>
-    <button class="f-pill" data-f="high" onclick="setF('high',this)">⚡ High</button>
-    <button class="t-sort" id="sortBtn" onclick="toggleSort()">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M7 12h10M11 18h2"/></svg>
-      Auto-sort
-    </button>
-    <button class="t-sort" id="focusBtn" onclick="toggleFocus()">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-      Focus Mode
-    </button>
-    <div class="t-search">
-      <div class="t-search-inner">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="searchIn" placeholder="Search tasks…" oninput="renderTasks()"/>
+        <div class="card add-ev" style="margin-bottom:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--prime),var(--accent))"></div>
+          <h3>Add Event</h3>
+          <div class="f-row"><label>Title</label><input type="text" id="evTitle" placeholder="Event name…"/></div>
+          <div class="f-inline">
+            <div class="f-row" style="margin-bottom:0"><label>Start</label><input type="time" id="evStart" value="09:00"/></div>
+            <div class="f-row" style="margin-bottom:0"><label>End</label><input type="time" id="evEnd" value="10:00"/></div>
+          </div>
+          <div class="f-row" style="margin-top:12px"><label>Day</label><select id="evDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select></div>
+          <div class="f-row"><label>Category</label><select id="evCat"><option value="study">📚 Study</option><option value="work">💼 Work</option><option value="personal">🌿 Personal</option><option value="health">💪 Health</option></select></div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:6px" onclick="addEvent()">Add to schedule</button>
+        </div>
+        <div class="card" style="padding:16px"><div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:13px">Events — <span id="curDayLbl"></span></div><div id="evMiniList"></div></div>
       </div>
     </div>
   </div>
 
-  <div class="prog-wrap" id="progWrap" style="display:none">
-    <div class="prog-labels"><span id="progLabel">Progress</span><span id="progPct">0%</span></div>
-    <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
-  </div>
-
-  <div class="task-list" id="taskList"></div>
-</div>
-
-<!-- ══ POMODORO ══ -->
-<div class="page" id="page-pomodoro">
-  <div class="ph"><h1>Focus <em>Timer</em></h1><div class="sub">the pomodoro method · deep work · no distraction</div></div>
-  <div class="pomo-layout">
-    <div class="pomo-main">
-      <div class="pomo-tabs">
-        <button class="p-tab on" onclick="setPMode('work',this)">Work</button>
-        <button class="p-tab" onclick="setPMode('short',this)">Short break</button>
-        <button class="p-tab" onclick="setPMode('long',this)">Long break</button>
-      </div>
-      <div class="ring-wrap">
-        <div class="ring-glow" id="ringGlow"></div>
-        <svg class="ring-svg" viewBox="0 0 120 120">
-          <circle class="ring-bg" cx="60" cy="60" r="52"/>
-          <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="0" stroke="url(#rg)"/>
-          <defs>
-            <linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
-              <stop stop-color="#7c5cfc"/><stop offset="1" stop-color="#ff6b6b"/>
-            </linearGradient>
-          </defs>
-        </svg>
-        <div class="ring-center">
-          <div class="pomo-t" id="pomoTime">25:00</div>
-          <div class="pomo-lbl" id="pomoLbl">FOCUS</div>
+  <!-- ══ REVIEW ══ -->
+  <div class="page" id="page-review">
+    <div class="ph"><div class="ph-row"><div><h1>Weekly <em>Review</em></h1><div class="sub" id="reviewWkLbl"></div></div><button class="btn btn-ghost btn-sm" onclick="exportReview()">↓ Export review</button></div></div>
+    <div class="review-top" id="reviewStats"></div>
+    <div class="card" style="padding:26px;margin-bottom:24px"><div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:18px">Tasks completed — past 7 days</div><div class="bar-chart" id="barChart"></div></div>
+    <div class="review-grid">
+      <div>
+        <div class="card" style="padding:22px">
+          <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px">Reflection</div>
+          <div class="r-prompt"><label>What went well?</label><textarea id="r1" placeholder="Write freely…" oninput="saveReview()"></textarea></div>
+          <div class="r-prompt"><label>What to improve?</label><textarea id="r2" placeholder="Be honest…" oninput="saveReview()"></textarea></div>
+          <div class="r-prompt"><label>Goals for next week</label><textarea id="r3" placeholder="Make them specific…" oninput="saveReview()"></textarea></div>
         </div>
       </div>
-      <div class="p-dots" id="pomoDots"></div>
-      <div class="pomo-ctrl">
-        <button class="p-skip" onclick="pomoReset()" title="Reset">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 019-9 9.75 9.75 0 016.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
-        </button>
-        <button class="p-play" id="playBtn" onclick="pomoToggle()">
-          <svg id="playIco" width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
-        </button>
-        <button class="p-skip" onclick="pomoSkip()" title="Skip">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,4 15,12 5,20" fill="currentColor"/><line x1="19" y1="4" x2="19" y2="20"/></svg>
-        </button>
-      </div>
-      <div style="font-size:1.08rem;font-family:var(--font-mono);color:var(--ink3);text-align:center;letter-spacing:.1em;text-transform:uppercase">
-        Session <strong id="pSess" style="color:var(--prime)">1</strong> · Round <strong id="pRound" style="color:var(--prime)">1</strong>
-      </div>
-      <div class="card" style="padding:18px;width:100%;max-width:320px">
-        <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px">Today's Sessions</div>
-        <div id="pomoLog"><div style="color:var(--ink4);font-size:1.06rem;font-style:italic;font-family:var(--font-display)">No sessions yet.</div></div>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="card" style="padding:20px">
-        <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px">Timer Settings</div>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <label style="font-size:1.02rem;color:var(--ink2);font-weight:400;font-family:var(--font-display);letter-spacing:.01em">Work (min)</label>
-            <input type="number" id="setWork" value="25" min="1" max="90" style="width:64px;text-align:center;padding:7px" onchange="updatePSettings()"/>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <label style="font-size:1.02rem;color:var(--ink2);font-weight:400;font-family:var(--font-display);letter-spacing:.01em">Short break</label>
-            <input type="number" id="setShort" value="5" min="1" max="30" style="width:64px;text-align:center;padding:7px" onchange="updatePSettings()"/>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <label style="font-size:1.02rem;color:var(--ink2);font-weight:400;font-family:var(--font-display);letter-spacing:.01em">Long break</label>
-            <input type="number" id="setLong" value="15" min="1" max="60" style="width:64px;text-align:center;padding:7px" onchange="updatePSettings()"/>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <label style="font-size:1.02rem;color:var(--ink2);font-weight:400;font-family:var(--font-display);letter-spacing:.01em">Sessions/round</label>
-            <input type="number" id="setSess" value="4" min="2" max="8" style="width:64px;text-align:center;padding:7px" onchange="updatePSettings()"/>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card" style="padding:22px">
+          <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px">How did you feel?</div>
+          <div class="mood-cloud">
+            <span class="m-tag" onclick="toggleMood(this)">😄 Productive</span><span class="m-tag" onclick="toggleMood(this)">😤 Stressed</span>
+            <span class="m-tag" onclick="toggleMood(this)">😌 Calm</span><span class="m-tag" onclick="toggleMood(this)">😓 Tired</span>
+            <span class="m-tag" onclick="toggleMood(this)">🔥 Motivated</span><span class="m-tag" onclick="toggleMood(this)">😶 Unfocused</span>
+            <span class="m-tag" onclick="toggleMood(this)">🎯 On track</span><span class="m-tag" onclick="toggleMood(this)">🌪 Overwhelmed</span>
           </div>
         </div>
-      </div>
-      <div class="card" style="padding:18px">
-        <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px">Today's Stats</div>
-        <div class="pomo-stat-grid">
-          <div class="p-stat"><div class="n" id="sFocused">0</div><div class="l">Sessions</div></div>
-          <div class="p-stat"><div class="n" id="sMins">0</div><div class="l">Minutes</div></div>
-          <div class="p-stat"><div class="n" id="sStreak">0</div><div class="l">Streak</div></div>
-          <div class="p-stat"><div class="n" id="sBreaks">0</div><div class="l">Breaks</div></div>
-        </div>
+        <div class="card" style="padding:22px"><div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:13px">Pomodoro summary</div><div id="pomoSummary" style="font-size:1rem;color:var(--ink2);line-height:2;font-family:var(--font-display)"></div></div>
       </div>
     </div>
   </div>
-</div>
-
-<!-- ══ NOTES ══ -->
-<div class="page" id="page-notes">
-  <div class="ph">
-    <div class="ph-row">
-      <div><h1><em>Notes</em></h1><div class="sub">write anything · ideas persist · knowledge compounds</div></div>
-      <button class="btn btn-primary" onclick="newNote()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        New note
-      </button>
-    </div>
-  </div>
-  <div class="notes-layout">
-    <div class="n-sidebar">
-      <div class="n-sidebar-header">
-        <div class="n-sidebar-title-row">
-          <span class="n-sidebar-title">All notes</span>
-          <span class="n-count-badge" id="nCount">0</span>
-        </div>
-        <div class="n-search-wrap">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input class="n-search-input" type="text" id="noteSearch" placeholder="Search notes…" oninput="renderNList()"/>
-        </div>
-      </div>
-      <div class="n-list-wrap" id="noteList"></div>
-    </div>
-
-    <div class="note-editor-card" id="nEditor">
-      <div id="nEditorInner" style="display:flex;flex-direction:column;flex:1;min-height:600px">
-        <div class="n-no-note">
-          <div class="n-no-note-icon">write.</div>
-          <p>Select a note or create a new one to start writing</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ SCHEDULE ══ -->
-<div class="page" id="page-schedule">
-  <div class="ph">
-    <div class="ph-row">
-      <div><h1><em>Schedule</em></h1><div class="sub">your week at a glance · time is the real currency</div></div>
-    </div>
-  </div>
-  <div class="sched-layout">
-    <div>
-      <div class="day-tabs" id="dayTabs"></div>
-      <div class="card" style="padding:20px"><div id="timetable"></div></div>
-    </div>
-    <div>
-      <div class="card add-ev" style="margin-bottom:14px;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--prime),var(--accent))"></div>
-        <h3>Add Event</h3>
-        <div class="f-row"><label>Title</label><input type="text" id="evTitle" placeholder="Event name…"/></div>
-        <div class="f-inline">
-          <div class="f-row" style="margin-bottom:0"><label>Start</label><input type="time" id="evStart" value="09:00"/></div>
-          <div class="f-row" style="margin-bottom:0"><label>End</label><input type="time" id="evEnd" value="10:00"/></div>
-        </div>
-        <div class="f-row" style="margin-top:12px"><label>Day</label>
-          <select id="evDay">
-            <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
-            <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
-          </select>
-        </div>
-        <div class="f-row"><label>Category</label>
-          <select id="evCat">
-            <option value="study">📚 Study</option>
-            <option value="work">💼 Work</option>
-            <option value="personal">🌿 Personal</option>
-            <option value="health">💪 Health</option>
-          </select>
-        </div>
-        <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:6px" onclick="addEvent()">Add to schedule</button>
-      </div>
-      <div class="card" style="padding:16px">
-        <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:13px">Events — <span id="curDayLbl"></span></div>
-        <div id="evMiniList"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ REVIEW ══ -->
-<div class="page" id="page-review">
-  <div class="ph">
-    <div class="ph-row">
-      <div><h1>Weekly <em>Review</em></h1><div class="sub" id="reviewWkLbl"></div></div>
-      <button class="btn btn-ghost btn-sm" onclick="exportReview()">↓ Export review</button>
-    </div>
-  </div>
-  <div class="review-top" id="reviewStats"></div>
-  <div class="card" style="padding:26px;margin-bottom:24px">
-    <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:18px">Tasks completed — past 7 days</div>
-    <div class="bar-chart" id="barChart"></div>
-  </div>
-  <div class="review-grid">
-    <div>
-      <div class="card" style="padding:22px">
-        <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px">Reflection</div>
-        <div class="r-prompt"><label>What went well?</label><textarea id="r1" placeholder="Write freely…" oninput="saveReview()"></textarea></div>
-        <div class="r-prompt"><label>What to improve?</label><textarea id="r2" placeholder="Be honest…" oninput="saveReview()"></textarea></div>
-        <div class="r-prompt"><label>Goals for next week</label><textarea id="r3" placeholder="Make them specific…" oninput="saveReview()"></textarea></div>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="card" style="padding:22px">
-        <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px">How did you feel?</div>
-        <div class="mood-cloud">
-          <span class="m-tag" onclick="toggleMood(this)">😄 Productive</span>
-          <span class="m-tag" onclick="toggleMood(this)">😤 Stressed</span>
-          <span class="m-tag" onclick="toggleMood(this)">😌 Calm</span>
-          <span class="m-tag" onclick="toggleMood(this)">😓 Tired</span>
-          <span class="m-tag" onclick="toggleMood(this)">🔥 Motivated</span>
-          <span class="m-tag" onclick="toggleMood(this)">😶 Unfocused</span>
-          <span class="m-tag" onclick="toggleMood(this)">🎯 On track</span>
-          <span class="m-tag" onclick="toggleMood(this)">🌪 Overwhelmed</span>
-        </div>
-      </div>
-      <div class="card" style="padding:22px">
-        <div style="font-size:.74rem;font-family:var(--font-mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:13px">Pomodoro summary</div>
-        <div id="pomoSummary" style="font-size:1rem;color:var(--ink2);line-height:2;font-family:var(--font-display);letter-spacing:.01em"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
 </main>
 
@@ -375,25 +195,14 @@
 <div class="overlay hidden" id="exportModal">
   <div class="modal">
     <h2>Export tasks</h2>
-    <div class="m-row"><label>Format</label>
-      <select id="expFmt"><option value="json">JSON</option><option value="csv">CSV</option><option value="txt">Plain text</option></select>
-    </div>
-    <div class="m-row">
-      <label style="display:flex;align-items:center;gap:9px;font-size:1.02rem;color:var(--ink);font-weight:400;cursor:pointer;font-family:var(--font-display);letter-spacing:.01em">
-        <input type="checkbox" id="expComp" checked style="width:auto;accent-color:var(--prime)"/> Include completed tasks
-      </label>
-    </div>
-    <div class="m-foot">
-      <button class="btn btn-ghost" onclick="document.getElementById('exportModal').classList.add('hidden')">Cancel</button>
-      <button class="btn btn-primary" onclick="doExport()">Download</button>
-    </div>
+    <div class="m-row"><label>Format</label><select id="expFmt"><option value="json">JSON</option><option value="csv">CSV</option><option value="txt">Plain text</option></select></div>
+    <div class="m-row"><label style="display:flex;align-items:center;gap:9px;font-size:1.02rem;color:var(--ink);cursor:pointer;font-family:var(--font-display)"><input type="checkbox" id="expComp" checked style="width:auto;accent-color:var(--prime)"/> Include completed tasks</label></div>
+    <div class="m-foot"><button class="btn btn-ghost" onclick="document.getElementById('exportModal').classList.add('hidden')">Cancel</button><button class="btn btn-primary" onclick="doExport()">Download</button></div>
   </div>
 </div>
 
 <div class="toasts" id="toasts"></div>
-
 <canvas id="bubbles" style="position:fixed;inset:0;pointer-events:none;z-index:0"></canvas>
-
 <script src="script.js"></script>
 
 </body>
