@@ -167,9 +167,8 @@ function fmtDate(d) {
   if (diff === 0) return 'today';
   if (diff === 1) return 'tomorrow';
   if (diff === -1) return 'yesterday';
-  return diff < 0 ? `${Math.abs(diff)}d overdue` : dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
-const isLate = d => d ? new Date(d + 'T00:00:00') < new Date().setHours(0, 0, 0, 0) : false;
 
 function getFiltered() {
   const q = (document.getElementById('searchIn')?.value || '').toLowerCase();
@@ -208,7 +207,7 @@ function renderTasks() {
         <div class="t-meta">
           <span class="badge badge-${t.priority}">${PRI_LABEL[t.priority] || t.priority}</span>
           ${(t.tags || []).map(g => `<span class="badge badge-tag">#${escH(g)}</span>`).join('')}
-          ${t.date ? `<span class="t-date ${isLate(t.date) && !t.completed ? 'late' : ''}">${fmtDate(t.date)}</span>` : ''}
+          ${t.date ? `<span class="t-date">${fmtDate(t.date)}</span>` : ''}
         </div>
       </div>
       <div class="t-actions">
