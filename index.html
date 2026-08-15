@@ -42,9 +42,8 @@
   <div class="page active" id="page-tasks">
     <div class="ph">
       <div class="ph-row">
-        <div><h1>My <em>Tasks</em></h1><div class="sub">drag to reorder · tag everything · stay in stride</div></div>
+        <div><h1>My <em>Tasks</em></h1><div class="sub">drag to reorder · stay in stride</div></div>
         <div style="display:flex;gap:8px;align-items:center">
-          <button class="btn btn-ghost btn-sm" onclick="openExport()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Export</button>
           <button class="btn btn-ghost btn-sm" onclick="clearDone()">Clear done</button>
         </div>
       </div>
@@ -61,9 +60,7 @@
       <div class="add-extras">
         <select id="priSel"><option value="low">💤 Low</option><option value="medium" selected>📌 Medium</option><option value="high">⚡ High</option><option value="critical">🚨 Critical</option></select>
         <input type="date" id="dateIn" style="width:auto"/>
-        <div class="tag-wrap"><input type="text" id="tagIn" placeholder="tag…" maxlength="20"/><button class="btn btn-ghost btn-sm" onclick="addTag()"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button></div>
       </div>
-      <div class="tag-chips" id="pendingTags"></div>
     </div>
     <div class="task-toolbar">
       <button class="f-pill on" data-f="all" onclick="setF('all',this)">All</button><button class="f-pill" data-f="active" onclick="setF('active',this)">Active</button><button class="f-pill" data-f="done" onclick="setF('done',this)">Done</button><button class="f-pill" data-f="critical" onclick="setF('critical',this)">🚨 Critical</button><button class="f-pill" data-f="high" onclick="setF('high',this)">⚡ High</button>
@@ -191,15 +188,6 @@
 
 </main>
 
-<!-- Export modal -->
-<div class="overlay hidden" id="exportModal">
-  <div class="modal">
-    <h2>Export tasks</h2>
-    <div class="m-row"><label>Format</label><select id="expFmt"><option value="json">JSON</option><option value="csv">CSV</option><option value="txt">Plain text</option></select></div>
-    <div class="m-row"><label style="display:flex;align-items:center;gap:9px;font-size:1.02rem;color:var(--ink);cursor:pointer;font-family:var(--font-display)"><input type="checkbox" id="expComp" checked style="width:auto;accent-color:var(--prime)"/> Include completed tasks</label></div>
-    <div class="m-foot"><button class="btn btn-ghost" onclick="document.getElementById('exportModal').classList.add('hidden')">Cancel</button><button class="btn btn-primary" onclick="doExport()">Download</button></div>
-  </div>
-</div>
 
 <div class="toasts" id="toasts"></div>
 <canvas id="bubbles" style="position:fixed;inset:0;pointer-events:none;z-index:0"></canvas>

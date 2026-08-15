@@ -90,18 +90,6 @@ if (!tasks.length) {
 }
 function saveTasks() { Storage.set('stride_tasks', tasks); }
 
-function addTag() {
-  const el = document.getElementById('tagIn'), val = el?.value.trim().toLowerCase().replace(/\s+/g, '-').slice(0, 20);
-  if (!val || pendTags.includes(val)) return;
-  pendTags.push(val); el.value = ''; renderPendingTags();
-}
-function renderPendingTags() {
-  const container = document.getElementById('pendingTags');
-  if (container) container.innerHTML = pendTags.map(t => `<span class="tag-chip">#${escH(t)}<button onclick="rmTag('${t}')">✕</button></span>`).join('');
-}
-function rmTag(t) { pendTags = pendTags.filter(x => x !== t); renderPendingTags(); }
-
-document.getElementById('tagIn').addEventListener('keydown', e => e.key === 'Enter' && addTag());
 document.getElementById('taskIn').addEventListener('keydown', e => e.key === 'Enter' && addTask());
 
 function addTask() {
@@ -110,9 +98,9 @@ function addTask() {
     input.style.borderColor = 'var(--accent)'; input.style.animation = 'shake .35s ease';
     setTimeout(() => { input.style.borderColor = ''; input.style.animation = ''; }, 700); return;
   }
-  tasks.unshift({ id: uid(), text, priority: document.getElementById('priSel').value, date: document.getElementById('dateIn').value, tags: [...pendTags], completed: false, createdAt: Date.now() });
+  tasks.unshift({ id: uid(), text, priority: document.getElementById('priSel').value, date: document.getElementById('dateIn').value, tags: [], completed: false, createdAt: Date.now() });
   input.value = ''; document.getElementById('dateIn').value = ''; pendTags = [];
-  renderPendingTags(); saveTasks(); renderTasks(); toast('Task added');
+  saveTasks(); renderTasks(); toast('Task added');
 }
 
 function setF(f, btn) { taskFilter = f; document.querySelectorAll('.f-pill').forEach(b => b.classList.remove('on')); btn?.classList.add('on'); renderTasks(); }
@@ -227,16 +215,7 @@ function dDrop(e, tid) {
   if (si >= 0 && ti >= 0) { const [item] = tasks.splice(si, 1); tasks.splice(ti, 0, item); saveTasks(); renderTasks(); }
 }
 
-function openExport() { document.getElementById('exportModal')?.classList.remove('hidden'); }
-function doExport() {
-  const fmt = document.getElementById('expFmt').value, inc = document.getElementById('expComp').checked, data = inc ? tasks : tasks.filter(t => !t.completed);
-  let content = '', fn = '', type = '';
-  if (fmt === 'json') { content = JSON.stringify(data, null, 2); fn = 'tasks.json'; type = 'application/json'; }
-  else if (fmt === 'csv') { content = 'Text,Priority,Tags,Date,Completed\n' + data.map(t => `"${t.text}","${t.priority}","${(t.tags || []).join(';')}","${t.date}","${t.completed}"`).join('\n'); fn = 'tasks.csv'; type = 'text/csv'; }
-  else { content = data.map(t => `[${t.completed ? 'x' : ' '}] ${t.text} (${t.priority})${t.date ? ' — ' + t.date : ''}`).join('\n'); fn = 'tasks.txt'; type = 'text/plain'; }
-  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([content], { type })); a.download = fn; a.click();
-  document.getElementById('exportModal')?.classList.add('hidden'); toast('Exported!', 'info');
-}
+
 renderTasks();
 
 // ════════════════════════════════════════
@@ -359,7 +338,6 @@ function openNote(id) {
     <div class="n-editor-toolbar">
       <button class="tb" onclick="ins('**','**')"><b>B</b></button><button class="tb" onclick="ins('*','*')"><em>I</em></button><div class="tb-divider"></div>
       <button class="tb" onclick="ins('# ','')">H1</button><button class="tb" onclick="ins('## ','')">H2</button><button class="tb" onclick="ins('### ','')">H3</button><div class="tb-divider"></div>
-      <button class="tb" onclick="ins('- ','')">• List</button><button class="tb" onclick="ins('- [ ] ','')">☐ Todo</button><button class="tb" onclick="ins('> ','')">❝ Quote</button><button class="tb" onclick="ins('\`','\`')">{ }</button><button class="tb" onclick="ins('---\\n','')">— HR</button><div class="tb-divider"></div>
       <button class="tb" id="previewToggleBtn" onclick="toggleNotePreview('${id}')">Preview</button>
       <button class="btn btn-danger btn-sm" style="margin-left:auto" onclick="delNote('${id}')">Delete</button>
     </div>
@@ -432,9 +410,22 @@ function renderNList() {
 // 6. SCHEDULE
 // ════════════════════════════════════════
 
-const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], HOURS = Array.from({ length: 15 }, (_, i) => i + 7);
-let events = Storage.get('stride_events', []), activeDay = DAYS[new Date().getDay() === 0 ? 6 : new Date().getDay() - 1];
+const HOURS = Array.from({ length: 15 }, (_, i) => i + 7);
+let events = Storage.get('stride_events', []), activeDay = new Date().toISOString().slice(0, 10);
 const saveEvents = () => Storage.set('stride_events', events);
+
+function getRollingDays() {
+  const list = [];
+  for (let i = -2; i <= 4; i++) {
+    const d = new Date();
+    d.setDate(d.getDate() + i);
+    list.push({
+      date: d.toISOString().slice(0, 10),
+      label: d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+    });
+  }
+  return list;
+}
 
 function addEvent() {
   const title = document.getElementById('evTitle')?.value.trim(); if (!title) { toast('Enter a title', 'err'); return; }
@@ -447,13 +438,26 @@ function delEvent(id) { events = events.filter(e => e.id !== id); saveEvents(); 
 function setDay(d) { activeDay = d; renderSchedule(); }
 
 function renderSchedule() {
-  const today = DAYS[new Date().getDay() === 0 ? 6 : new Date().getDay() - 1], tabs = document.getElementById('dayTabs');
-  if (tabs) tabs.innerHTML = DAYS.map(d => `<button class="d-tab ${d === activeDay ? 'on' : ''} ${d === today && d !== activeDay ? 'today-tab' : ''}" onclick="setDay('${d}')">${d.slice(0, 3)}</button>`).join('');
-  const lbl = document.getElementById('curDayLbl'); if (lbl) lbl.textContent = activeDay;
+  const rolling = getRollingDays(), todayStr = new Date().toISOString().slice(0, 10);
+  if (!rolling.some(r => r.date === activeDay)) activeDay = todayStr;
+  
+  const tabs = document.getElementById('dayTabs');
+  if (tabs) tabs.innerHTML = rolling.map(r => `<button class="d-tab ${r.date === activeDay ? 'on' : ''} ${r.date === todayStr && r.date !== activeDay ? 'today-tab' : ''}" onclick="setDay('${r.date}')">${r.label}</button>`).join('');
+  
+  const evDaySelect = document.getElementById('evDay');
+  if (evDaySelect) {
+    const prevVal = evDaySelect.value;
+    evDaySelect.innerHTML = rolling.map(r => `<option value="${r.date}">${r.label}</option>`).join('');
+    if (rolling.some(r => r.date === prevVal)) evDaySelect.value = prevVal;
+    else evDaySelect.value = todayStr;
+  }
+
+  const activeLabel = rolling.find(r => r.date === activeDay)?.label || activeDay;
+  const lbl = document.getElementById('curDayLbl'); if (lbl) lbl.textContent = activeLabel;
   const dayEvs = events.filter(e => e.day === activeDay), now = new Date(), nowM = now.getHours() * 60 + now.getMinutes(), tt = document.getElementById('timetable');
   if (tt) {
     tt.innerHTML = HOURS.map(h => {
-      const slotEvs = dayEvs.filter(e => parseInt(e.start.split(':')[0]) === h), isNow = today === activeDay && nowM >= h * 60 && nowM < (h + 1) * 60, nowPct = isNow ? ((nowM - h * 60) / 60 * 100) : null;
+      const slotEvs = dayEvs.filter(e => parseInt(e.start.split(':')[0]) === h), isNow = todayStr === activeDay && nowM >= h * 60 && nowM < (h + 1) * 60, nowPct = isNow ? ((nowM - h * 60) / 60 * 100) : null;
       return `<div class="time-slot"><div class="t-label">${h < 12 ? h + 'am' : h === 12 ? '12pm' : (h - 12) + 'pm'}</div><div class="t-line">${nowPct !== null ? `<div class="now-line" style="top:${nowPct}%"></div>` : ''}${slotEvs.map(ev => {
         const [sh, sm] = ev.start.split(':').map(Number), [eh, em] = ev.end.split(':').map(Number);
         const top = sm / 60 * 100, dur = Math.max(((eh * 60 + em) - (sh * 60 + sm)) / 60 * 100, 28);
@@ -462,7 +466,7 @@ function renderSchedule() {
     }).join('');
   }
   const colors = { study: 'var(--teal)', work: 'var(--accent)', personal: 'var(--prime)', health: 'var(--mint)' }, mini = document.getElementById('evMiniList');
-  if (mini) mini.innerHTML = dayEvs.length ? [...dayEvs].sort((a, b) => a.start.localeCompare(b.start)).map(ev => `<div class="ev-mini"><div class="ev-dot" style="background:${colors[ev.cat]}"></div><div class="ev-info"><div class="ev-info-title">${escH(ev.title)}</div><div class="ev-info-time">${ev.start} – ${ev.end}</div></div><button class="ev-del" onclick="delEvent('${ev.id}')">✕</button></div>`).join('') : `<div style="color:var(--ink4);font-size:1.06rem;padding:6px 0;font-style:italic;font-family:var(--font-display)">No events on ${activeDay}</div>`;
+  if (mini) mini.innerHTML = dayEvs.length ? [...dayEvs].sort((a, b) => a.start.localeCompare(b.start)).map(ev => `<div class="ev-mini"><div class="ev-dot" style="background:${colors[ev.cat]}"></div><div class="ev-info"><div class="ev-info-title">${escH(ev.title)}</div><div class="ev-info-time">${ev.start} – ${ev.end}</div></div><button class="ev-del" onclick="delEvent('${ev.id}')">✕</button></div>`).join('') : `<div style="color:var(--ink4);font-size:1.06rem;padding:6px 0;font-style:italic;font-family:var(--font-display)">No events on ${activeLabel}</div>`;
 }
 
 // ════════════════════════════════════════

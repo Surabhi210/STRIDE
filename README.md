@@ -10,7 +10,6 @@
 - **Focus Mode** — narrows the view to only Critical and High priority tasks to eliminate distraction
 - **Auto-sort** tasks by priority
 - Track overall progress with a live progress bar
-- Export tasks in **JSON, CSV, or Plain Text** format
 - Clear completed tasks in one click
 
 ⏱️ Focus Timer (Pomodoro)
