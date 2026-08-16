@@ -412,6 +412,13 @@ function renderNList() {
 
 const HOURS = Array.from({ length: 15 }, (_, i) => i + 7);
 let events = Storage.get('stride_events', []), activeDay = new Date().toISOString().slice(0, 10);
+
+// Clean up legacy events saved with invalid weekday names (e.g., "Monday") instead of ISO dates
+if (events.some(e => !/^\d{4}-\d{2}-\d{2}$/.test(e.day))) {
+  events = events.filter(e => /^\d{4}-\d{2}-\d{2}$/.test(e.day));
+  Storage.set('stride_events', events);
+}
+
 const saveEvents = () => Storage.set('stride_events', events);
 
 function getRollingDays() {
@@ -468,6 +475,8 @@ function renderSchedule() {
   const colors = { study: 'var(--teal)', work: 'var(--accent)', personal: 'var(--prime)', health: 'var(--mint)' }, mini = document.getElementById('evMiniList');
   if (mini) mini.innerHTML = dayEvs.length ? [...dayEvs].sort((a, b) => a.start.localeCompare(b.start)).map(ev => `<div class="ev-mini"><div class="ev-dot" style="background:${colors[ev.cat]}"></div><div class="ev-info"><div class="ev-info-title">${escH(ev.title)}</div><div class="ev-info-time">${ev.start} – ${ev.end}</div></div><button class="ev-del" onclick="delEvent('${ev.id}')">✕</button></div>`).join('') : `<div style="color:var(--ink4);font-size:1.06rem;padding:6px 0;font-style:italic;font-family:var(--font-display)">No events on ${activeLabel}</div>`;
 }
+
+renderSchedule();
 
 // ════════════════════════════════════════
 // 7. WEEKLY REVIEW
